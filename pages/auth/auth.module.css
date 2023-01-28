@@ -1,0 +1,11 @@
+.container {
+  /* border: 1px solid red; */
+  position: absolute;
+  top: 250px;
+  right: 50px;
+  left: 50px;
+}
+
+.texts {
+  text-align: center;
+}

@@ -1,0 +1,21 @@
+.container {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1200px;
+  height: 100vh;
+  margin: auto;
+  background-color: #E5E5E5;
+}
+
+.inputGroup {
+  border-radius: 10px;
+  background-color: white;
+  height: 500px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
