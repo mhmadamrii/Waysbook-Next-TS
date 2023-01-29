@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
+import { DialogContext } from '../../context/modal-context'
 
 import Logo from '../../public/assets/Logo.png'
 
@@ -9,10 +10,12 @@ import { Button, IconButton, Menu, MenuItem } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import { ArrowDropDown } from '@material-ui/icons'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   customButtonLogin: {
     padding: '10px 30px',
     height: 30,
+    border: '2px solid black',
+    fontWeight: 'bold'
   },
   customButtonRegister: {
     padding: '10px 30px',
@@ -27,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     width: 10,
     height: 10,
   },
-}))
+})
 
 const styles = {
   container: {
@@ -46,7 +49,7 @@ const styles = {
   logoWrapper: {
     // border: '1px solid',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   wrapper: {
     display: 'flex',
@@ -64,8 +67,9 @@ const styles = {
 }
 
 const NavbarUser = () => {
-  const { t, i18n } = useTranslation()
   const classes = useStyles()
+  const { t, i18n } = useTranslation()
+  const { open, toggleOpen } = useContext(DialogContext)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -94,14 +98,14 @@ const NavbarUser = () => {
             <IconButton className={classes.iconBtn} onClick={handleClick}>
               <ArrowDropDown />
             </IconButton>
-            <Button variant="outlined" className={classes.customButtonLogin}>
-              {t("login")}
+            <Button variant="outlined" className={classes.customButtonLogin} onClick={toggleOpen}>
+              {t('login')}
             </Button>
             <Button
               variant="contained"
               className={classes.customButtonRegister}
             >
-              {t("register")}
+              {t('register')}
             </Button>
           </div>
         </div>
@@ -114,8 +118,12 @@ const NavbarUser = () => {
           onClose={handleClose}
         >
           <MenuItem>Option 1</MenuItem>
-          <MenuItem onClick={() => handleTranslate('id')}>translate indo</MenuItem>
-          <MenuItem onClick={() => handleTranslate('en')}>{t("translateToEnglish")}</MenuItem>
+          <MenuItem onClick={() => handleTranslate('id')}>
+            translate indo
+          </MenuItem>
+          <MenuItem onClick={() => handleTranslate('en')}>
+            {t('translateToEnglish')}
+          </MenuItem>
         </Menu>
       </div>
     </>

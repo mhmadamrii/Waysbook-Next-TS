@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Head from 'next/head'
 import Background from '../../components/background'
 import NavbarUser from '../../components/navbar'
-import styles from "./auth.module.css"
-import { useTranslation } from "react-i18next";
-
+import styles from './auth.module.css'
+import { useTranslation } from 'react-i18next'
+import ModalLogin from '../../components/modal-login'
+import { DialogContext } from '../../context/modal-context'
 
 const Auth: React.FC = () => {
   const [isLoginUser, setIsLoginUser] = useState<boolean>(true)
-  const { t, i18n } = useTranslation();
+  const { open, toggleOpen } = useContext(DialogContext)
+  const { t, i18n } = useTranslation()
 
   return (
     <>
@@ -22,12 +24,14 @@ const Auth: React.FC = () => {
 
         <div className={styles.container}>
           <div className={styles.texts}>
-            <h1>{t("common_thumbnail_one")}</h1>
-            <h1>{t("common_thumbnail_two")}</h1>
+            <h1>{t('common_thumbnail_one')}</h1>
+            <h1>{t('common_thumbnail_two')}</h1>
           </div>
         </div>
       </main>
-      <div></div>
+      <div>
+        <ModalLogin />
+      </div>
     </>
   )
 }
