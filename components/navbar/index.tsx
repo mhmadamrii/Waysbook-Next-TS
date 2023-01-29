@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { useTranslation } from "react-i18next";
-
+import { useTranslation } from 'react-i18next'
 
 import Logo from '../../public/assets/Logo.png'
 
@@ -10,13 +9,13 @@ import { Button, IconButton, Menu, MenuItem } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import { ArrowDropDown } from '@material-ui/icons'
 
-
 const useStyles = makeStyles((theme) => ({
   customButtonLogin: {
-    // padding: '10px 30px',
+    padding: '10px 30px',
     height: 30,
   },
   customButtonRegister: {
+    padding: '10px 30px',
     height: 30,
     backgroundColor: 'black',
     color: 'white',
@@ -26,12 +25,13 @@ const useStyles = makeStyles((theme) => ({
   },
   iconBtn: {
     width: 10,
-    height: 10
-  }
+    height: 10,
+  },
 }))
 
 const styles = {
   container: {
+    // border: '1px solid',
     width: 1200,
     margin: 'auto',
     position: 'absolute' as 'absolute' | 'absolute',
@@ -42,6 +42,11 @@ const styles = {
   logo: {
     width: 100,
     height: 80,
+  },
+  logoWrapper: {
+    // border: '1px solid',
+    display: 'flex',
+    alignItems: 'center'
   },
   wrapper: {
     display: 'flex',
@@ -59,28 +64,29 @@ const styles = {
 }
 
 const NavbarUser = () => {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation()
   const classes = useStyles()
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   const handleTranslate = (lang: string) => {
-    i18n.changeLanguage(lang);
+    console.log('translate', i18n.changeLanguage)
+    i18n.changeLanguage(lang)
     console.log('hello')
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
   return (
     <>
       <div style={styles.container}>
         <div style={styles.wrapper}>
-          <div>
+          <div style={styles.logoWrapper}>
             <Image src={Logo} alt="Logo" style={styles.logo} />
           </div>
 
@@ -89,13 +95,13 @@ const NavbarUser = () => {
               <ArrowDropDown />
             </IconButton>
             <Button variant="outlined" className={classes.customButtonLogin}>
-              Login
+              {t("login")}
             </Button>
             <Button
               variant="contained"
               className={classes.customButtonRegister}
             >
-              Register
+              {t("register")}
             </Button>
           </div>
         </div>
@@ -108,8 +114,8 @@ const NavbarUser = () => {
           onClose={handleClose}
         >
           <MenuItem>Option 1</MenuItem>
-          <MenuItem>Option 2</MenuItem>
-          <MenuItem onClick={() => handleTranslate("en")}>Option 3</MenuItem>
+          <MenuItem onClick={() => handleTranslate('id')}>translate indo</MenuItem>
+          <MenuItem onClick={() => handleTranslate('en')}>{t("translateToEnglish")}</MenuItem>
         </Menu>
       </div>
     </>

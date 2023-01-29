@@ -3,5 +3,7 @@
   "translateToEnglish": "Translate to English",
   "translateToSpanish": "Translate to Spanish",
   "common_thumbnail_one": "With us, you can shop online & help",
-  "common_thumbnail_two": "save your high street at the same time"
+  "common_thumbnail_two": "save your high street at the same time",
+  "login": "Login",
+  "register": "Register"
 }
