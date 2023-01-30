@@ -4,12 +4,22 @@ interface Props {
   children: React.ReactNode
 }
 
-interface DialogContext {
+interface ModalLoginContext {
   open: boolean
   toggleOpen: () => void
 }
 
-export const DialogContext = createContext<DialogContext>({
+interface ModalRegisterContext {
+  open: boolean
+  toggleOpen: () => void
+}
+
+export const ModalLoginContext = createContext<ModalLoginContext>({
+  open: false,
+  toggleOpen: () => {},
+})
+
+export const ModalRegisterContext = createContext<ModalRegisterContext>({
   open: false,
   toggleOpen: () => {},
 })
@@ -22,8 +32,8 @@ export const DialogProvider: React.FC<Props> = ({ children }) => {
   }
 
   return (
-    <DialogContext.Provider value={{ open, toggleOpen }}>
+    <ModalLoginContext.Provider value={{ open, toggleOpen }}>
       {children}
-    </DialogContext.Provider>
+    </ModalLoginContext.Provider>
   )
 }

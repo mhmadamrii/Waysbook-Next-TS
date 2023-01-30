@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
-import { DialogContext } from '../../context/modal-context'
+import { ModalLoginContext, ModalRegisterContext } from '../../context/modal-context'
 
 import Logo from '../../public/assets/Logo.png'
 
@@ -59,17 +59,18 @@ const styles = {
     margin: '0 50px',
   },
   btnGroup: {
-    border: '1px solid transparent',
+    // border: '1px solid red',
     padding: 10,
     display: 'flex',
     gap: 10,
+    width: 280
   },
 }
 
 const NavbarUser = () => {
   const classes = useStyles()
   const { t, i18n } = useTranslation()
-  const { open, toggleOpen } = useContext(DialogContext)
+  const { open, toggleOpen } = useContext(ModalLoginContext)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import styles from './modal.module.css'
-import { DialogContext } from '../../context/modal-context'
+import { ModalLoginContext } from '../../context/modal-context'
 
 // MUI-styles (required)
 import {
@@ -12,29 +12,37 @@ import {
   TextField,
   Button,
   makeStyles,
+  Typography,
 } from '@material-ui/core'
-import Slide from '@mui/material/Slide'
-import { TransitionProps } from '@mui/material/transitions'
-
 
 const useStyles = makeStyles({
   dialog: {
     height: 300,
-    // width: '70%',
-    border: '1px solid red'
-  }
+    backgroundColor: '#E5E5E5',
+    // border: '1px solid red'
+  },
+  buttonSubmit: {
+    fontWeight: 'bold',
+    marginTop: 20,
+    backgroundColor: '#393939',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#333',
+    },
+  },
 })
-
 
 const ModalLogin: React.FC = () => {
   const classes = useStyles()
-  const { open, toggleOpen } = useContext(DialogContext)
+  const { open, toggleOpen } = useContext(ModalLoginContext)
 
   return (
     <>
       <div className={styles.container}>
         <Dialog open={open} onClose={toggleOpen} fullWidth keepMounted>
-          <DialogTitle>Login</DialogTitle>
+          <DialogTitle style={{ backgroundColor: '#E5E5E5' }}>
+            Login
+          </DialogTitle>
           <DialogContent className={classes.dialog}>
             <form className={styles.formGroup}>
               <TextField id="outlined-basic" label="Email" variant="outlined" />
@@ -43,9 +51,12 @@ const ModalLogin: React.FC = () => {
                 label="Password"
                 variant="outlined"
               />
-              <Button variant="contained" color="primary">
+              <Button variant="contained" className={classes.buttonSubmit}>
                 Login
               </Button>
+              <Typography>
+                Don't have an account? <a href="#"> Klik Here </a>
+              </Typography>
             </form>
           </DialogContent>
         </Dialog>

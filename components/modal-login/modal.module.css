@@ -8,6 +8,8 @@
 
 .formGroup {
   display: flex;
+  gap: 30px;
   flex-direction: column;
   /* border: 1px solid red; */
+  height: 90%;
 }
