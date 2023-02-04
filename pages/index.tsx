@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
-import { I18nextProvider, useTranslation } from "react-i18next";
+import Auth from "./auth"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +16,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <h1>HEllo world</h1>
+        {/* <h1>HEllo world</h1> */}
+        <Auth />
       </main>
     </>
   )

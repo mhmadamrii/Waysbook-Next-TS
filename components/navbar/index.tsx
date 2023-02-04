@@ -1,7 +1,10 @@
 import React, { useState, useContext } from 'react'
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
-import { ModalLoginContext, ModalRegisterContext } from '../../context/modal-context'
+import {
+  ModalLoginContext,
+  ModalRegisterContext,
+} from '../../context/modal-context'
 
 import Logo from '../../public/assets/Logo.png'
 
@@ -11,11 +14,16 @@ import { makeStyles } from '@material-ui/core'
 import { ArrowDropDown } from '@material-ui/icons'
 
 const useStyles = makeStyles({
+  screenMobileView: {
+    '@media(max-width: 800px)': {
+      display: 'none'
+    }
+  },
   customButtonLogin: {
     padding: '10px 30px',
     height: 30,
     border: '2px solid black',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   customButtonRegister: {
     padding: '10px 30px',
@@ -34,7 +42,6 @@ const useStyles = makeStyles({
 
 const styles = {
   container: {
-    // border: '1px solid',
     width: 1200,
     margin: 'auto',
     position: 'absolute' as 'absolute' | 'absolute',
@@ -63,11 +70,11 @@ const styles = {
     padding: 10,
     display: 'flex',
     gap: 10,
-    width: 280
+    width: 280,
   },
 }
 
-const NavbarUser = () => {
+const NavbarUser = ({ ...otherProps }) => {
   const classes = useStyles()
   const { t, i18n } = useTranslation()
   const { open, toggleOpen } = useContext(ModalLoginContext)
@@ -89,7 +96,7 @@ const NavbarUser = () => {
   }
   return (
     <>
-      <div style={styles.container}>
+      <div style={styles.container} className={classes.screenMobileView}>
         <div style={styles.wrapper}>
           <div style={styles.logoWrapper}>
             <Image src={Logo} alt="Logo" style={styles.logo} />
@@ -99,7 +106,12 @@ const NavbarUser = () => {
             <IconButton className={classes.iconBtn} onClick={handleClick}>
               <ArrowDropDown />
             </IconButton>
-            <Button variant="outlined" className={classes.customButtonLogin} onClick={toggleOpen}>
+            <Button
+              variant="outlined"
+              className={classes.customButtonLogin}
+              onClick={toggleOpen}
+              {...otherProps}
+            >
               {t('login')}
             </Button>
             <Button

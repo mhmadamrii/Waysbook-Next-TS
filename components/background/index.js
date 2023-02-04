@@ -7,8 +7,10 @@ import Layer2 from "../../public/assets/layer2.png";
 
 const styles = {
   wrappedContainer: {
-    width: 1200,
-    margin: 'auto'
+    // width: 1200,
+    margin: 'auto',
+    height: 700,
+    // border: '1px solid red'
   },
   container: {
     // border: "1px solid",

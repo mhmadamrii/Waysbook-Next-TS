@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles'
 // custom MUI-styles (required)
 const useStyles = makeStyles((theme) => ({
   customBtnLogin: {
-    border: '1px solid red',
+    // border: '1px solid red',
     backgroundColor: '#393939',
     color: '#ffff',
     width: 350,
